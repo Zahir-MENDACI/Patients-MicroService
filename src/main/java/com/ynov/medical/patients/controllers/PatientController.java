@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ynov.medical.patients.daos.IPatientDao;
+import com.ynov.medical.patients.models.DoctorBody;
 import com.ynov.medical.patients.models.Patient;
 
 import okhttp3.HttpUrl;
@@ -127,18 +128,22 @@ public class PatientController {
         return true;
     }
 
+
+
     @PostMapping("doctors")
-    public boolean addDoctor(@RequestBody String body) throws IOException {
-        JSONObject parsedBody = new JSONObject(body);
-        String idPatient = parsedBody.getString("patient");
-        String idDoctor = parsedBody.getString("doctor");
+    public boolean addDoctor(@RequestBody DoctorBody body) throws IOException {
+        // JSONObject parsedBody = new JSONObject(body);
+        // String idPatient = parsedBody.getString("patient");
+        // String idDoctor = parsedBody.getString("doctor");
+        String idDoctor = body.getDoctor();
+        String idPatient = body.getPatient();
         Optional<Patient> patient = patientDao.findById(idPatient);
         if (patient.isPresent()) {
             String json = "{\r\n" +
                     " \"doctor\" : \"" + idDoctor + "\",\r\n" +
                     " \"patient\" : \"" + idPatient + "\"\r\n" +
                     "}";
-            Map<String, Object> response = post("http://localhost:7070/addPatientToDoctor", json);
+            Map<String, Object> response = post("http://doctors:7070/addPatientToDoctor", json);
             if (response.get("code").equals(200)) {
                 Patient updatePatient = patient.get();
                 updatePatient.setDoctor(idDoctor);
