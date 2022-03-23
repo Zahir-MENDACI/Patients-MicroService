@@ -130,7 +130,7 @@ public class PatientController {
 
 
 
-    @PostMapping("doctors")
+    @PostMapping("addPatientToDoctor")
     public boolean addDoctor(@RequestBody DoctorBody body) throws IOException {
         // JSONObject parsedBody = new JSONObject(body);
         // String idPatient = parsedBody.getString("patient");
