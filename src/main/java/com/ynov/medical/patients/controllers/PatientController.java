@@ -143,7 +143,7 @@ public class PatientController {
                     " \"doctor\" : \"" + idDoctor + "\",\r\n" +
                     " \"patient\" : \"" + idPatient + "\"\r\n" +
                     "}";
-            Map<String, Object> response = post("http://doctors:7070/addPatientToDoctor", json);
+            Map<String, Object> response = post("http://localhost:7070/addPatientToDoctor", json);
             if (response.get("code").equals(200)) {
                 Patient updatePatient = patient.get();
                 updatePatient.setDoctor(idDoctor);
