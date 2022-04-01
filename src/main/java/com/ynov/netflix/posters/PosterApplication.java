@@ -1,4 +1,4 @@
-package com.ynov.medical.patients;
+package com.ynov.netflix.posters;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @SpringBootApplication
-public class PatientsApplication {
+public class PosterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PatientsApplication.class, args);
+		SpringApplication.run(PosterApplication.class, args);
 	}
 
 }
